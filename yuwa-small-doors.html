@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>桜庭ゆわの小さな扉たち</title>
+  <meta name="description" content="桜庭ゆわの物語と心の体験を集めた小さな案内所です。" />
+  <style>
+    :root{
+      --ink:#4a3b36;
+      --muted:#7f706a;
+      --gold:#c9a96a;
+      --cream:#fffaf2;
+      --line:rgba(201,169,106,.55);
+      --shadow:0 18px 55px rgba(77,61,52,.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 15% 8%, rgba(207,229,246,.9), transparent 27%),
+        radial-gradient(circle at 92% 18%, rgba(245,229,247,.85), transparent 28%),
+        radial-gradient(circle at 18% 92%, rgba(225,239,220,.85), transparent 32%),
+        linear-gradient(180deg,#fffaf3 0%,#fff7f4 52%,#f9fbff 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    .sparkle{
+      position:fixed; inset:0; pointer-events:none; opacity:.65;
+      background-image:
+        radial-gradient(circle, rgba(201,169,106,.75) 0 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(201,169,106,.45) 0 1px, transparent 1.8px);
+      background-size:90px 90px,130px 130px;
+      background-position:10px 25px,50px 70px;
+      mask-image:linear-gradient(to bottom,#000,transparent 76%);
+    }
+    .wrap{max-width:980px; margin:0 auto; padding:32px 18px 54px; position:relative}
+    header{
+      text-align:center;
+      padding:42px 18px 30px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:rgba(255,250,242,.72);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(6px);
+      position:relative;
+      overflow:hidden;
+    }
+    header:before,header:after{
+      content:"";
+      position:absolute; width:220px; height:220px; border-radius:50%;
+      background:radial-gradient(circle,rgba(201,169,106,.10),transparent 68%);
+      top:-80px;
+    }
+    header:before{left:-70px}
+    header:after{right:-70px}
+    .moon{font-size:34px; color:var(--gold); letter-spacing:10px; margin-bottom:12px}
+    h1{font-size:clamp(30px,6vw,56px); margin:0; font-weight:500; letter-spacing:.08em}
+    .subtitle{margin:18px auto 0; max-width:720px; line-height:2; color:var(--muted); font-size:16px}
+    .divider{margin:22px auto 0; width:240px; color:var(--gold); display:flex; align-items:center; gap:12px; justify-content:center}
+    .divider:before,.divider:after{content:""; height:1px; flex:1; background:var(--line)}
+    .section-title{margin:38px 0 16px; text-align:center; font-size:20px; font-weight:500; letter-spacing:.08em}
+    .cards{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+    .card{
+      display:block; text-decoration:none; color:inherit;
+      min-height:214px; padding:26px 24px;
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:rgba(255,255,255,.72);
+      box-shadow:0 14px 38px rgba(77,61,52,.10);
+      position:relative; overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{transform:translateY(-3px); box-shadow:0 20px 48px rgba(77,61,52,.15)}
+    .card:after{
+      content:"";
+      position:absolute; inset:auto -35px -45px auto;
+      width:160px; height:160px; border-radius:50%;
+      background:rgba(255,255,255,.45);
+    }
+    .cream{background:linear-gradient(145deg,rgba(255,246,231,.92),rgba(255,255,255,.74))}
+    .blue{background:linear-gradient(145deg,rgba(233,243,251,.95),rgba(255,255,255,.74))}
+    .sage{background:linear-gradient(145deg,rgba(238,245,236,.95),rgba(255,255,255,.74))}
+    .lav{background:linear-gradient(145deg,rgba(242,237,249,.95),rgba(255,255,255,.74))}
+    .rose{background:linear-gradient(145deg,rgba(255,240,236,.95),rgba(255,255,255,.74))}
+    .icon{font-size:36px; margin-bottom:14px}
+    .card h2{font-size:24px; margin:0 0 12px; font-weight:500; letter-spacing:.04em}
+    .card p{margin:0; color:var(--muted); line-height:1.85; font-size:15px}
+    .tag{
+      display:inline-block; margin-top:18px; padding:7px 13px;
+      border:1px solid var(--line); border-radius:999px;
+      color:#806838; background:rgba(255,250,242,.64);
+      font-size:13px;
+    }
+    .disabled{cursor:default; opacity:.78}
+    .disabled:hover{transform:none; box-shadow:0 14px 38px rgba(77,61,52,.10)}
+    .note{
+      margin-top:28px; padding:22px 20px; border-radius:22px;
+      background:rgba(255,255,255,.62); border:1px solid rgba(201,169,106,.35);
+      color:var(--muted); line-height:1.9; font-size:14px;
+    }
+    footer{text-align:center; margin-top:34px; color:var(--muted); font-size:13px}
+    @media (max-width:720px){
+      .wrap{padding:18px 12px 40px}
+      header{padding:34px 16px 24px; border-radius:22px}
+      .cards{grid-template-columns:1fr; gap:14px}
+      .card{min-height:auto; padding:22px 20px}
+      .card h2{font-size:22px}
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkle"></div>
+  <main class="wrap">
+    <header>
+      <div class="moon">☾ ✧</div>
+      <h1>桜庭ゆわの<br>小さな扉たち</h1>
+      <p class="subtitle">
+        ここは、「大丈夫」の奥にある本音にそっと気づくための<br>
+        物語や体験を集めた、小さな案内所です。<br>
+        気になる扉から、ゆっくり開いてみてください。
+      </p>
+      <div class="divider">✦</div>
+    </header>
+
+    <h2 class="section-title">今、開いている扉</h2>
+
+    <section class="cards" aria-label="扉一覧">
+      <!-- URL差し替え場所：https://note.com/yuwa_broomrealm と MAOU_URL は公開時に書き換え -->
+
+      <div class="card cream disabled">
+        <div class="icon">🗡️</div>
+        <h2>影の魔王と、光の旅</h2>
+        <p>影と向き合い、仲間と一緒に光を取り戻していくRPG風こころ冒険。近日オープン予定です。</p>
+        <span class="tag">近日オープン</span>
+      </div>
+
+      <a class="card sage" href="https://forms.gle/Wnin3pK5c5ki8eyn9">
+        <div class="icon">🪞</div>
+        <h2>本音を一緒に見る</h2>
+        <p>物語を読んで、もう少し自分の気持ちを整理したい方へ。個別セッションの入口です。</p>
+        <span class="tag">個別セッション</span>
+      </a>
+
+      <a class="card blue" href="https://note.com/yuwa_broomrealm">
+        <div class="icon">📖</div>
+        <h2>言葉の本棚</h2>
+        <p>ゆわの物語や、心をほどく言葉を置いていく場所です。noteなどの読みものはこちらへ。</p>
+        <span class="tag">読みもの</span>
+      </a>
+
+      <div class="card lav disabled">
+        <div class="icon">☕</div>
+        <h2>月夜の謎解き喫茶</h2>
+        <p>心の思い込みをほどく、謎解き物語の扉。準備ができたら、こちらからご案内します。</p>
+        <span class="tag">準備中</span>
+      </div>
+
+      <div class="card rose disabled">
+        <div class="icon">🎭</div>
+        <h2>今夜、あなたは誰を演じますか</h2>
+        <p>自分が無意識に演じてきた役に気づく、劇場型こころエンタメ。準備中です。</p>
+        <span class="tag">準備中</span>
+      </div>
+
+      <div class="card cream disabled">
+        <div class="icon">🌙</div>
+        <h2>次の物語</h2>
+        <p>新しい扉ができたら、ここに追加していきます。また会える日を楽しみにしています。</p>
+        <span class="tag">coming soon</span>
+      </div>
+    </section>
+
+    <div class="note">
+      ※「影の魔王と、光の旅」は、公開準備が整い次第リンクを追加します。
+    </div>
+
+    <footer>
+      Yuwa Bloom Realm ｜ 桜庭ゆわ
+    </footer>
+  </main>
+</body>
+</html>
